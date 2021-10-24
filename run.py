@@ -96,6 +96,15 @@ async def on_guild_remove(guild): # remove all instances of the given guild_id
     await bot.db.execute("DELETE FROM joined WHERE guild_id = ?", (guild.id,))
 
     await bot.db.commit()
+
+@bot.event
+async def on_command_error(ctx, error):
+    if isinstance(error, discord.errors.Forbidden):
+        await ctx.send("The member has his/her dm's off :no_entry_sign:")
+        return
+    if isinstance(error, discord.errors.HTTPException):
+        await ctx.send('There was an error while trying to send a message to this user.")
+        return
     
 # commands
 @bot.command()
