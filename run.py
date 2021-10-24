@@ -103,7 +103,7 @@ async def on_command_error(ctx, error):
         await ctx.send("The member has his/her dm's off :no_entry_sign:")
         return
     if isinstance(error, discord.errors.HTTPException):
-        await ctx.send('There was an error while trying to send a message to this user.")
+        await ctx.send("There was an error while trying to send a message to this user.")
         return
     
 # commands
